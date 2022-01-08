@@ -5,19 +5,55 @@
 - Stores user entries
     - Entries are automatically date-time stamped
 - Analysis of user entry is done upon submission
-    - Analysis is stored as related to the creating post
+    - Analysis is stored as related to the creating log
 - Gives some analytical feedack to the user upon analysis completion
 - User Dashboard
     - User can browse previous entries (sorted by date-time)
 
-## Wireframes!
+
 ## User stories that describe how your app will be used.
-## Frontend component diagram!
-## Database diagrams!
-## http routes inventory!
+- When I first visit the site, I am greeted by a home page describing the purpose of the site and it's main features.
+- When I'm not signed in, there is an option to Login, which has a further option to Create a new account.
+- After logging in, I'm taken to the home page, but the navbar has new options.
+- When I click on the 'New Entry' option, I'm taken to a page where I can input text and submit it to be logged.
+- After clicking to submit a new entry, I'm taken to a page where I see the log, a numerical analysis, and an explanation of where the analysis grade comes from.
+- When I click on the 'Dashboard" option, I'm taken to a page where I see all of my past logs and their corresponding analyses. My newest logs are at the top.
+
+
+## Wireframes
+See planningStuff/Wireframes.dio
+
+
+## Frontend component diagram
+See planningStuff/FrontendComponents.dio
+
+## Database diagrams
+See planningStuff/ERD.jpg
+
+## Backend http routes inventory
+| HTTP Verb | Route | Notes |
+| --------- | ----- | -------------------------------|
+| POST | /user | Create a new User |
+| POST | /user/login | Login an existing User
+| GET | /user/verify | Verify an existing User via the authorization token held in local storage |
+| POST | /logs | Create a new Log and related Analysis, associated to the logged in user |
+| GET | /logs | Retrieve all Logs that are associated to the logged in user |
+| GET | /analysis | Retrieve the one Analysis that is related to the given Log data |
+
 ## What technologies you intend on using.
+- Frontend built in React with TypeScript
+- Backend built in Flask with Python
+    - PostgreSQL
+
 ## Your completion timeline: what you expect to get done by when
+- [ ] Monday: Backend completed with password hashing, user auth, and tested routes.
+- [ ] Tuesday: Frontend AppContext and non-page components completed.
+- [ ] Wednesday: Frontend completed. This day will focus on completion of page components and routing with routing error handling.
+- [ ] Thursday: All Final CSS - making it look pretty.
+
 ## Foreseen challenges or obstacles.
+- Dealing with TypeScript types for different React components.
+
 ## What your stretch goals are.
 - User Dashboard Extension
     - Chart of analysis 'scores' over time
@@ -28,4 +64,7 @@
     - User's therapist could see user's analysis 'scores'
     - Could see entry submission frequency
     - Could see entry text
+
 ## A link to your repo!
+- Frontend: https://github.com/arnquic/mental_state_frontend
+- Backend: https://github.com/arnquic/mental_state_backend
