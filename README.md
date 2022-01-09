@@ -1,15 +1,15 @@
 # Tentative Name: Summit
+
 ## What your MVP looks like.
 - Stores users
     - User Auth is included
 - Stores user entries
     - Entries are automatically date-time stamped
-- Analysis of user entry is done upon submission
-    - Analysis is stored as related to the creating log
+    - Analysis of user entry is done upon submission
+        - Analysis is stored as part of the log
 - Gives some analytical feedack to the user upon analysis completion
 - User Dashboard
     - User can browse previous entries (sorted by date-time)
-
 
 ## User stories that describe how your app will be used.
 - When I first visit the site, I am greeted by a home page describing the purpose of the site and it's main features.
@@ -19,10 +19,8 @@
 - After clicking to submit a new entry, I'm taken to a page where I see the log, a numerical analysis, and an explanation of where the analysis grade comes from.
 - When I click on the 'Dashboard" option, I'm taken to a page where I see all of my past logs and their corresponding analyses. My newest logs are at the top.
 
-
 ## Wireframes
 See planningStuff/Wireframes.dio
-
 
 ## Frontend component diagram
 See planningStuff/FrontendComponents.dio
@@ -38,7 +36,7 @@ See planningStuff/ERD.jpg
 | GET | /user/verify | Verify an existing User via the authorization token held in local storage |
 | POST | /logs | Create a new Log and related Analysis, associated to the logged in user |
 | GET | /logs | Retrieve all Logs that are associated to the logged in user |
-| GET | /analysis | Retrieve the one Analysis that is related to the given Log data |
+
 
 ## What technologies you intend on using.
 - Frontend built in React with TypeScript
@@ -46,7 +44,7 @@ See planningStuff/ERD.jpg
     - PostgreSQL
 
 ## Your completion timeline: what you expect to get done by when
-- [ ] Monday: Backend completed with password hashing, user auth, and tested routes.
+- [x] Monday: Backend completed with password hashing, user auth, and tested routes.
 - [ ] Tuesday: Frontend AppContext and non-page components completed.
 - [ ] Wednesday: Frontend completed. This day will focus on completion of page components and routing with routing error handling.
 - [ ] Thursday: All Final CSS - making it look pretty.
@@ -68,3 +66,6 @@ See planningStuff/ERD.jpg
 ## A link to your repo!
 - Frontend: https://github.com/arnquic/mental_state_frontend
 - Backend: https://github.com/arnquic/mental_state_backend
+
+## Sources
+- Journal article on use of absolutist words in individuals with depression, anxienty, and suicidal ideation as compared to the general population: https://journals.sagepub.com/doi/full/10.1177/2167702617747074
