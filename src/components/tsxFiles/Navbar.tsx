@@ -7,7 +7,7 @@ import { useContext } from "react";
 
 const Navbar = (): JSX.Element => {
 
-    const { user, setUser } = useContext(AppContext);
+    const { user, setUser, setNewLog, setLogs } = useContext(AppContext);
 
     const navigation: NavigateFunction = useNavigate();
 
@@ -28,13 +28,15 @@ const Navbar = (): JSX.Element => {
     }
 
     function handleLogoutClick(e: React.MouseEvent<HTMLButtonElement>): void {
+        setNewLog(null);
+        setLogs([null]);
         setUser(null);
-        localStorage.removeItem("userId");
+        localStorage.removeItem("summitAuth");
     }
 
     return (
         <div className="Navbar">
-            {user?.summitAuth ?
+            {user ?
                 <>
                     <h4 onClick={handleSummitClick}>Summit</h4>
                     <div className="NavbarRight">
