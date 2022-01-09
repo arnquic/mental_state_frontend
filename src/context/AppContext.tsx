@@ -7,7 +7,7 @@ interface IUser {
     summitAuth: string;
 }
 
-type TUser = IUser | null;
+export type TUser = IUser | null;
 
 interface ILog {
     content: string;
@@ -15,11 +15,13 @@ interface ILog {
     analysis: number;
 }
 
-type TLog = ILog | null;
+export type TLog = ILog | null;
 
 interface IContext {
     user: TUser;
     setUser: React.Dispatch<React.SetStateAction<TUser>>;
+    log: TLog;
+    setLog: React.Dispatch<React.SetStateAction<TLog>>
     logs: TLog[];
     setLogs: React.Dispatch<React.SetStateAction<TLog[]>>;
 }
@@ -27,6 +29,8 @@ interface IContext {
 const defaultState: IContext = {
     user: null,
     setUser: () => { },
+    log: null,
+    setLog: () => { },
     logs: [null],
     setLogs: () => { }
 }
@@ -40,11 +44,14 @@ interface IChildrenProps {
 function AppProvider({ children }: IChildrenProps): JSX.Element {
 
     const [user, setUser] = useState<TUser>(null);
+    const [log, setLog] = useState<TLog>(null);
     const [logs, setLogs] = useState<TLog[]>([null]);
 
     const state: IContext = {
         user: user,
         setUser: setUser,
+        log: log,
+        setLog: setLog,
         logs: logs,
         setLogs: setLogs
     }
