@@ -34,6 +34,8 @@ See planningStuff/ERD.jpg
 | POST | /user | Create a new User |
 | POST | /user/login | Login an existing User
 | GET | /user/verify | Verify an existing User via the authorization token held in local storage |
+| PUT | /user/update | Update user information (email and password) |
+| DELETE | /user/delete | Delete user account |
 | POST | /logs | Create a new Log and related Analysis, associated to the logged in user |
 | GET | /logs | Retrieve all Logs that are associated to the logged in user |
 
@@ -51,6 +53,7 @@ See planningStuff/ERD.jpg
 
 ## Foreseen challenges or obstacles.
 - Dealing with TypeScript types for different React components.
+- Deciding how analysis is performed.
 
 ## What your stretch goals are.
 - User Dashboard Extension
@@ -69,3 +72,4 @@ See planningStuff/ERD.jpg
 
 ## Sources
 - Journal article on use of absolutist words in individuals with depression, anxienty, and suicidal ideation as compared to the general population: https://journals.sagepub.com/doi/full/10.1177/2167702617747074
+- IBM Watson Tone Analyzer (might use): 

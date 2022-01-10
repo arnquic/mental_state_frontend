@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="W4tQ65GttU3uXy_WECjE" name="Page-1">
-        <mxGraphModel dx="373" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1068" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -22,19 +22,19 @@
                 <mxCell id="4" value="HomePage" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="120" y="200" width="150" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="NewEntryPage&lt;br&gt;&lt;br&gt;from context: posts" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="5" value="NewEntryPage&lt;br&gt;&lt;br&gt;from context: log, logs" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="120" y="380" width="150" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="AnalysisPage&lt;br&gt;&lt;br&gt;useState: post" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="6" value="AnalysisPage&lt;br&gt;&lt;br&gt;from context: log" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="120" y="440" width="150" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="16" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="1" source="7" target="12" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="UserDashboardPage&lt;br&gt;&lt;br&gt;from context: posts" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="7" value="UserDashboardPage&lt;br&gt;&lt;br&gt;from context: logs" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="120" y="500" width="150" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="AppContext&lt;br&gt;&lt;br&gt;user, posts" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                <mxCell id="8" value="AppContext&lt;br&gt;&lt;br&gt;user, log, logs" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
                     <mxGeometry x="550" y="140" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="HomeElements" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -46,7 +46,7 @@
                 <mxCell id="11" value="SignupPage&lt;br&gt;&lt;br&gt;from context: user" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="120" y="320" width="150" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="LogDashboardElements&lt;br&gt;&lt;br&gt;props: post info" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="12" value="LogDashboardElements&lt;br&gt;&lt;br&gt;props: log info" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="330" y="320" width="160" height="60" as="geometry"/>
                 </mxCell>
             </root>
