@@ -1,0 +1,15 @@
+.Navbar {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 50px;
+}
+
+.NavbarRight {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.NavbarSummit:hover {
+    cursor: pointer;
+}

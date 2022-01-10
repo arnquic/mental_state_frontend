@@ -5,6 +5,7 @@ import React from 'react';
 import env from 'react-dotenv';
 import { useState, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
+import { Link } from 'react-router-dom';
 
 interface ILoginInfo {
     email: string,
@@ -53,6 +54,10 @@ const LoginPage = (): JSX.Element => {
                 </div>
                 <input type="submit" value="Submit" />
             </form >
+            <div className='LoginToSignup'>
+                <p>Don't have an account?</p>
+                <Link to="/signup">Create one here.</Link>
+            </div>
         </div>
     )
 }

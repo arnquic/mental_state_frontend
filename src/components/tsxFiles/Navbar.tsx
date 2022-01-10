@@ -24,7 +24,7 @@ const Navbar = (): JSX.Element => {
     }
 
     function handleDashboardClick(e: React.MouseEvent<HTMLButtonElement>): void {
-        navigation("/dashboard");
+        navigation("/dashboard/logs");
     }
 
     function handleLogoutClick(e: React.MouseEvent<HTMLButtonElement>): void {
@@ -38,7 +38,7 @@ const Navbar = (): JSX.Element => {
         <div className="Navbar">
             {user ?
                 <>
-                    <h4 onClick={handleSummitClick}>Summit</h4>
+                    <h4 className="NavbarSummit" onClick={handleSummitClick}>Summit</h4>
                     <div className="NavbarRight">
                         <button onClick={handleNewEntryClick}>New Entry</button>
                         <button onClick={handleDashboardClick}>Dashboard</button>
@@ -50,8 +50,10 @@ const Navbar = (): JSX.Element => {
                 </>
                 :
                 <>
-                    <h4 onClick={handleSummitClick}>Summit</h4>
-                    <button className="NavbarLoginBtn" onClick={handleLoginClick}>Login</button>
+                    <h4 className="NavbarSummit" onClick={handleSummitClick}>Summit</h4>
+                    <div className="NavbarRight">
+                        <button className="NavbarLoginBtn" onClick={handleLoginClick}>Login</button>
+                    </div>
                 </>
             }
         </div>

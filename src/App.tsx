@@ -5,17 +5,32 @@ import LoginPage from './pages/tsxFiles/LoginPage';
 import SignupPage from './pages/tsxFiles/SignupPage';
 import NewEntryPage from './pages/tsxFiles/NewEntryPage';
 import AnalysisPage from './pages/tsxFiles/AnalysisPage';
-import UserDashboardPage from './pages/tsxFiles/UserDashboardPage';
-
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { AppContext } from './context/AppContext';
-import { useContext } from 'react';
+import UserDashboardAccountPage from './pages/tsxFiles/UserDashboardAccountPage';
+import UserDashboardLogsPage from './pages/tsxFiles/UserDashboardLogsPage';
 
 import React from 'react';
+import env from 'react-dotenv';
+import axios, { AxiosResponse } from 'axios';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { AppContext } from './context/AppContext';
+import { useContext, useEffect } from 'react';
+
 
 function App() {
 
-  const { user } = useContext(AppContext);
+  const { user, setUser } = useContext(AppContext);
+
+  async function verifyUser(): Promise<void> {
+    const summit_auth = localStorage.getItem('summitAuth');
+    if (summit_auth) {
+      const response: AxiosResponse = await axios.get(`${env.BACKEND_URL}/user/verify`, { headers: { authorization: summit_auth } });
+      console.log(response);
+      localStorage.setItem("summitAuth", response.data.summit_auth);
+      setUser(response.data.user_info);
+    }
+  }
+
+  useEffect((): void => { verifyUser() }, []);
 
   return (
     <div className="App">
@@ -61,10 +76,19 @@ function App() {
           }
         />
 
-        <Route path="/dashboard"
+        <Route path="/dashboard/logs"
           element={
             user ?
-              <UserDashboardPage />
+              <UserDashboardLogsPage />
+              :
+              <Navigate to="/login" />
+          }
+        />
+
+        <Route path="/dashboard/account"
+          element={
+            user ?
+              <UserDashboardAccountPage />
               :
               <Navigate to="/login" />
           }
