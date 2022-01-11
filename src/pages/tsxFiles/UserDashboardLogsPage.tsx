@@ -1,12 +1,12 @@
 import "../cssFiles/UserDashboardLogsPage.css";
 import DashboardLogElement from '../../components/tsxFiles/DashboardLogElement';
+import UserDashboardSelections from "../../components/tsxFiles/UserDashboardSelections";
 
 import React from 'react';
 import env from 'react-dotenv';
 import axios, { AxiosResponse } from 'axios';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { Link } from "react-router-dom";
 
 const UserDashboardLogsPage = () => {
 
@@ -43,10 +43,7 @@ const UserDashboardLogsPage = () => {
 
     return (
         <div className="UserDashboardLogsPage">
-            <div className="UserDashboardSelections">
-                <Link className="UserDashboardSelectionsOption" to="/dashboard/logs">Log Info</Link>
-                <Link className="UserDashboardSelectionsOption" to="/dashboard/account">Account Info</Link>
-            </div>
+            <UserDashboardSelections />
             <div className="UserDashboardLogsPageLogElements">
                 <h2>Your Logs</h2>
                 {

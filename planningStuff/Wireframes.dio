@@ -231,7 +231,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="User Dashboard - Log Info" id="uh5tVZp34gSrO-_k6-4v">
-        <mxGraphModel dx="908" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1146" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="opBRVM6ThRyH1DjYUdPC-0"/>
                 <mxCell id="opBRVM6ThRyH1DjYUdPC-1" parent="opBRVM6ThRyH1DjYUdPC-0"/>
@@ -329,7 +329,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="User Dashboard - Account Info" id="JbwTvyYHekktkskOUrvo">
-        <mxGraphModel dx="693" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1146" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="Ol3sOpJYn5B7S9ZUdbGa-0"/>
                 <mxCell id="Ol3sOpJYn5B7S9ZUdbGa-1" parent="Ol3sOpJYn5B7S9ZUdbGa-0"/>
