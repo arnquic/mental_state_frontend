@@ -3,6 +3,7 @@ import "../cssFiles/NewEntryPage.css";
 import React from 'react'
 import env from "react-dotenv";
 import axios, { AxiosResponse } from "axios";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 
@@ -34,22 +35,24 @@ const NewEntryPage = (): JSX.Element => {
 
     const { setNewLog } = useContext(AppContext);
 
+    const navigation: NavigateFunction = useNavigate();
+
     function handleTextChange(e: React.ChangeEvent<HTMLTextAreaElement>): void {
         setContent(e.target.value);
     }
 
     async function handleSubmitClick(e: React.MouseEvent<HTMLInputElement>) {
         e.preventDefault();
-        console.log("submit click triggered.")
-        const analysis: number = analyseContent();
+        const analysis: number = analyzeContent();
         const summitAuth: string | null = localStorage.getItem('summitAuth');
         if (summitAuth) {
             const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/logs`, { content: content, analysis: analysis }, { headers: { authorization: summitAuth } });
-            console.log(response);
+            setNewLog({ analysis: response.data.new_log.analysis, content: response.data.new_log.content, dateTime: response.data.new_log.dateTime });
+            navigation("/analysis");
         }
     }
 
-    function analyseContent(): number {
+    function analyzeContent(): number {
         let numAbsolutistWords: number = 0;
         let totalWords: number = 0;
         const contentNoNewLines: string[] = content.split("\n")
