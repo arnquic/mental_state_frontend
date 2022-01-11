@@ -1,0 +1,4 @@
+.NewEntryContent > textarea {
+    resize: none;
+    font-size: 20px;
+}

@@ -38,7 +38,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="Login Page" id="vinvzo65W4TyJL_haHLL">
-        <mxGraphModel dx="901" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="467" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="cGeWTXiQCgOuk53NOT69-0"/>
                 <mxCell id="cGeWTXiQCgOuk53NOT69-1" parent="cGeWTXiQCgOuk53NOT69-0"/>
@@ -155,7 +155,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="New Entry Page" id="uUphdMkQMXwCBQYR6n0U">
-        <mxGraphModel dx="901" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="467" dy="917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="8UCr4tA0xVXy_CejF3_t-0"/>
                 <mxCell id="8UCr4tA0xVXy_CejF3_t-1" parent="8UCr4tA0xVXy_CejF3_t-0"/>

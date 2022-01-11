@@ -21,10 +21,9 @@ function App() {
   const { user, setUser } = useContext(AppContext);
 
   async function verifyUser(): Promise<void> {
-    const summit_auth = localStorage.getItem('summitAuth');
-    if (summit_auth) {
-      const response: AxiosResponse = await axios.get(`${env.BACKEND_URL}/user/verify`, { headers: { authorization: summit_auth } });
-      console.log(response);
+    const summitAuth: string | null = localStorage.getItem('summitAuth');
+    if (summitAuth) {
+      const response: AxiosResponse = await axios.get(`${env.BACKEND_URL}/user/verify`, { headers: { authorization: summitAuth } });
       localStorage.setItem("summitAuth", response.data.summit_auth);
       setUser(response.data.user_info);
     }
