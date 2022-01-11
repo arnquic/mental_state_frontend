@@ -47,7 +47,7 @@ See planningStuff/ERD.jpg
 
 ## Your completion timeline: what you expect to get done by when
 - [x] Monday: Backend completed with password hashing, user auth, and tested routes.
-- [ ] Tuesday: Frontend AppContext and non-page components completed.
+- [x] Tuesday: Frontend AppContext and non-page components completed.
 - [ ] Wednesday: Frontend completed. This day will focus on completion of page components and routing with routing error handling.
 - [ ] Thursday: All Final CSS - making it look pretty.
 

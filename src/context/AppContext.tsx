@@ -9,29 +9,34 @@ interface IUser {
 
 export type TUser = IUser | null;
 
-interface ILog {
-    content: string;
-    dateTime: Date;
-    analysis: number;
+export interface ILog {
+    id: number | null;
+    content: string | null;
+    dateTime: string | null;
+    analysis: number | null;
 }
-
-export type TLog = ILog | null;
 
 interface IContext {
     user: TUser;
     setUser: React.Dispatch<React.SetStateAction<TUser>>;
-    newLog: TLog;
-    setNewLog: React.Dispatch<React.SetStateAction<TLog>>
-    logs: TLog[];
-    setLogs: React.Dispatch<React.SetStateAction<TLog[]>>;
+    newLog: ILog;
+    setNewLog: React.Dispatch<React.SetStateAction<ILog>>
+    logs: ILog[];
+    setLogs: React.Dispatch<React.SetStateAction<ILog[]>>;
 }
 
+export const defaultLog: ILog = {
+    id: null,
+    content: null,
+    dateTime: null,
+    analysis: null
+}
 const defaultState: IContext = {
     user: null,
     setUser: () => { },
-    newLog: null,
+    newLog: defaultLog,
     setNewLog: () => { },
-    logs: [null],
+    logs: [defaultLog],
     setLogs: () => { }
 }
 
@@ -44,8 +49,8 @@ interface IChildrenProps {
 function AppProvider({ children }: IChildrenProps): JSX.Element {
 
     const [user, setUser] = useState<TUser>(null);
-    const [newLog, setNewLog] = useState<TLog>(null);
-    const [logs, setLogs] = useState<TLog[]>([null]);
+    const [newLog, setNewLog] = useState<ILog>(defaultLog);
+    const [logs, setLogs] = useState<ILog[]>([defaultLog]);
 
     const state: IContext = {
         user: user,

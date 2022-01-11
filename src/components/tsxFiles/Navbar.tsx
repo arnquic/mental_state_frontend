@@ -2,7 +2,7 @@ import "../cssFiles/Navbar.css";
 
 import React from 'react';
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { AppContext } from "../../context/AppContext";
+import { AppContext, defaultLog } from "../../context/AppContext";
 import { useContext } from "react";
 
 const Navbar = (): JSX.Element => {
@@ -28,8 +28,8 @@ const Navbar = (): JSX.Element => {
     }
 
     function handleLogoutClick(e: React.MouseEvent<HTMLButtonElement>): void {
-        setNewLog(null);
-        setLogs([null]);
+        setNewLog(defaultLog);
+        setLogs([defaultLog]);
         setUser(null);
         localStorage.removeItem("summitAuth");
     }

@@ -1,3 +1,4 @@
+import "../cssFiles/UserDashboardLogsPage.css";
 import DashboardLogElement from '../../components/tsxFiles/DashboardLogElement';
 
 import React from 'react';
@@ -5,7 +6,7 @@ import env from 'react-dotenv';
 import axios, { AxiosResponse } from 'axios';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { JsxAttributeLike } from 'typescript';
+import { Link } from "react-router-dom";
 
 const UserDashboardLogsPage = () => {
 
@@ -26,10 +27,11 @@ const UserDashboardLogsPage = () => {
         return (
             <>
                 {
-                    logs ?
+                    logs[0].content
+                        ?
                         logs.map<JSX.Element>((log) => {
                             return (
-                                <DashboardLogElement dateTime={log?.dateTime} />
+                                <DashboardLogElement key={log.id} dateTime={log.dateTime} content={log.content} analysis={log.analysis} />
                             )
                         })
                         :
@@ -40,16 +42,18 @@ const UserDashboardLogsPage = () => {
     }
 
     return (
-        <>
-            {
-                logs ?
-                    <div>
-                        <DashboardLogElement dateTime={logs[0]?.dateTime}
-                    </div >
-                    :
-                    <h2>Loading...</h2>
-            }
-        </>
+        <div className="UserDashboardLogsPage">
+            <div className="UserDashboardSelections">
+                <Link className="UserDashboardSelectionsOption" to="/dashboard/logs">Log Info</Link>
+                <Link className="UserDashboardSelectionsOption" to="/dashboard/account">Account Info</Link>
+            </div>
+            <div className="UserDashboardLogsPageLogElements">
+                <h2>Your Logs</h2>
+                {
+                    createLogElements()
+                }
+            </div>
+        </div>
     )
 }
 

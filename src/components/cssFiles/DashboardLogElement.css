@@ -1,0 +1,63 @@
+.DashboardLogElement {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 5fr 2fr 1fr;
+    grid-template-rows: 150px;
+
+    background-color: rgba(240, 238, 239, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}
+
+.DashboardLogElement:hover {
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+}
+
+.DashboardLogElementDate {
+    grid-column: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.DashboardLogElementTime {
+    grid-column: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.DashboardLogElementContent {
+    grid-column: 4;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+}
+
+.DashboardLogElementAnalysisHolder {
+    grid-column: 5;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.DashboardLogElementScoreCircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 60px;
+    width: 60px;
+
+    border-radius: 50%;
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}

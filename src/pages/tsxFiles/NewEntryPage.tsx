@@ -47,7 +47,7 @@ const NewEntryPage = (): JSX.Element => {
         const summitAuth: string | null = localStorage.getItem('summitAuth');
         if (summitAuth) {
             const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/logs`, { content: content, analysis: analysis }, { headers: { authorization: summitAuth } });
-            setNewLog({ analysis: response.data.new_log.analysis, content: response.data.new_log.content, dateTime: response.data.new_log.dateTime });
+            setNewLog({ id: response.data.new_log.id, analysis: response.data.new_log.analysis, content: response.data.new_log.content, dateTime: response.data.new_log.dateTime });
             navigation("/analysis");
         }
     }
