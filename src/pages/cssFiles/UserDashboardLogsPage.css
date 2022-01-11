@@ -1,6 +1,6 @@
 .UserDashboardLogsPage {
     display: grid;
-    grid-template-columns: 3vw 21vw 64vw 12vw;
+    grid-template-columns: 3vw 21vw 74vw 4vw;
 }
 
 .UserDashboardLogsPageLogElements {

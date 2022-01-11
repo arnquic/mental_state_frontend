@@ -1,0 +1,110 @@
+.UserDashboardAccountPage {
+    display: grid;
+    grid-template-columns: 3vw 21vw 74vw 4vw;
+}
+
+.UserDashboardAccountPageInfoHolder {
+    grid-column: 3;
+
+    width: 75%;
+
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.UserDashboardAccountPageSubHeader {
+    border-top: 0.5px solid gray;
+}
+
+.UserDashboardAccountPageBasicInfo {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.ChangeEmailForm {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ChangePasswordForm {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.UserDashboardAccountPageTextInput {
+    height: 40px;
+    width: 60%;
+
+    text-align: center;
+
+    background-color: rgba(240, 238, 239, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+}
+
+.UpdatePasswordMatch {
+    color: red;
+}
+
+.UserDashboardAccountPageSubmitBtn {
+    width: 60%;
+    height: 50px;
+    margin-top: 15px;
+
+    font-weight: bolder;
+
+    background-color: rgba(240, 238, 239, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}
+
+.UserDashboardAccountPageSubmitBtn:hover {
+    cursor: pointer;
+
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+}
+
+.DeleteAccount {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.DeleteAccount > button {
+    width: 125px;
+    height: 60px;
+    padding: 5px;
+
+    font-weight: bolder;
+
+    background-color: rgba(240, 238, 239, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}
+
+.DeleteAccountButton:hover {
+    cursor: pointer;
+    
+    background-color: rgba(255, 0, 0, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: -6px -6px 16px rgb(246, 136, 136) inset, 6px 6px 16px rgb(143, 81, 81)inset;
+}
+
+.CancelDeleteAccountButton:hover {
+    cursor: pointer;
+    
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+}

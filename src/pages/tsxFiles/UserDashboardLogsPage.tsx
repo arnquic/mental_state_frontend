@@ -8,7 +8,7 @@ import axios, { AxiosResponse } from 'axios';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/AppContext';
 
-const UserDashboardLogsPage = () => {
+const UserDashboardLogsPage = (): JSX.Element => {
 
     const { logs, setLogs } = useContext(AppContext);
 
