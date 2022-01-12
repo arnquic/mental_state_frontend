@@ -31,7 +31,7 @@ const UserDashboardLogsPage = (): JSX.Element => {
                         ?
                         logs.map<JSX.Element>((log) => {
                             return (
-                                <DashboardLogElement key={log.id} dateTime={log.dateTime} content={log.content} analysis={log.analysis} />
+                                <DashboardLogElement key={log.id} id={log.id} dateTime={log.dateTime} content={log.content} analysis={log.analysis} />
                             )
                         })
                         :

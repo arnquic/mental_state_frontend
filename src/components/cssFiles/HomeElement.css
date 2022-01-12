@@ -1,5 +1,17 @@
 .HomeElement {
-    display: grid;
-    grid-template-columns: 300px 300px;
-    grid-template-rows: 200px;
+    padding: 15px;
+    
+    display: flex;
+    gap: 60px;
+
+    background-color: rgba(240, 238, 239, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}
+
+.HomeElementImg {
+    width: 45vw;
+    height: auto;
 }

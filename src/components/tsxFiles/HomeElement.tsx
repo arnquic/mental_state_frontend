@@ -3,19 +3,20 @@ import React from 'react';
 
 interface Props {
     imgLeft: boolean,
-    imgSrc: string,
+    img: string,
     imgAlt: string,
     heading: string,
     text: string
 }
 
 const HomeElement = (props: Props): JSX.Element => {
+
     return (
         <div className="HomeElement">
             {props.imgLeft
                 ?
                 <>
-                    <img className="HomeElementImg" src={props.imgSrc} alt={props.imgAlt} />
+                    <img className="HomeElementImg" src={props.img} alt={props.imgAlt} />
                     <div className="HomeElementText">
                         <h3>{props.heading}</h3>
                         <p>{props.text}</p>
@@ -27,7 +28,7 @@ const HomeElement = (props: Props): JSX.Element => {
                         <h3>{props.heading}</h3>
                         <p>{props.text}</p>
                     </div>
-                    <img className="HomeElementImg" src={props.imgSrc} alt={props.imgAlt} />
+                    <img className="HomeElementImg" src={props.img} alt={props.imgAlt} />
                 </>
             }
         </div>

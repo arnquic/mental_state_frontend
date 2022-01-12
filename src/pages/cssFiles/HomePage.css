@@ -1,7 +1,12 @@
 .HomePage {
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 25px;
+    gap: 100px;
+}
+
+.HomePageIntro {
+    width: 65vw;
 }

@@ -1,13 +1,22 @@
 import "../cssFiles/DashboardLogElement.css";
-import React from 'react'
+
+import React from 'react';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from "../../context/AppContext";
 
 interface IProps {
     dateTime: string | null,
     content: string | null,
-    analysis: number | null
+    analysis: number | null,
+    id: number | null
 }
 
 const DashboardLogElement = (props: IProps): JSX.Element => {
+
+    const navigation: NavigateFunction = useNavigate();
+
+    const { setAnalysisLog } = useContext(AppContext);
 
     const localTimeZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -23,13 +32,23 @@ const DashboardLogElement = (props: IProps): JSX.Element => {
         hour: "numeric",
         minute: "numeric",
         timeZone: localTimeZone
-    }
+    };
 
     const dateFormat = new Intl.DateTimeFormat("en-US", dateOptions);
     const timeFormat = new Intl.DateTimeFormat("en-US", timeOptions);
 
+    function handleLogElementClick(): void {
+        setAnalysisLog({
+            content: props.content,
+            analysis: props.analysis,
+            dateTime: props.dateTime,
+            id: props.id
+        })
+        navigation("/analysis");
+    }
+
     return (
-        <div className='DashboardLogElement'>
+        <div className='DashboardLogElement' onClick={handleLogElementClick}>
             {props.dateTime ?
                 <h3 className='DashboardLogElementDate'>{dateFormat.format(Date.parse(props.dateTime))}</h3>
                 :
@@ -47,8 +66,10 @@ const DashboardLogElement = (props: IProps): JSX.Element => {
             }
             {props.analysis ?
                 <div className="DashboardLogElementAnalysisHolder">
-                    <div className='DashboardLogElementScoreCircle'>
-                        <h4 className='DashboardLogElementAnalysis'>{props.analysis}</h4>
+                    <div className="DashboardLogElementScoreOuterCircle">
+                        <div className='DashboardLogElementScoreInnerCircle'>
+                            <h4 className='DashboardLogElementAnalysis'>{props.analysis}</h4>
+                        </div>
                     </div>
                 </div>
                 :

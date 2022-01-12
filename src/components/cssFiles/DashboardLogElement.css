@@ -12,6 +12,7 @@
 }
 
 .DashboardLogElement:hover {
+    cursor: pointer;
     box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
 }
 
@@ -39,6 +40,7 @@
     justify-content: center;
 
     padding: 10px;
+    overflow: hidden;
 }
 
 .DashboardLogElementAnalysisHolder {
@@ -49,7 +51,20 @@
     justify-content: center;
 }
 
-.DashboardLogElementScoreCircle {
+.DashboardLogElementScoreOuterCircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 90px;
+    width: 90px;
+
+    border-radius: 50%;
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+}
+
+.DashboardLogElementScoreInnerCircle {
     display: flex;
     align-items: center;
     justify-content: center;
