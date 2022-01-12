@@ -41,7 +41,7 @@ const NewEntryPage = (): JSX.Element => {
         setContent(e.target.value);
     }
 
-    async function handleSubmitClick(e: React.MouseEvent<HTMLInputElement>) {
+    async function handleSubmitClick(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
         const analysis: number = analyzeContent();
         const summitAuth: string | null = localStorage.getItem('summitAuth');
@@ -78,15 +78,19 @@ const NewEntryPage = (): JSX.Element => {
     }
 
     return (
-        <div>
-            <h2>Create a New Log Entry</h2>
-            <p>Don't feel pressured to make it long or short. Write whatever you feel.</p>
-            <div className="NewEntryForm">
-                <div className="NewEntryContent">
-                    <textarea name="content" placeholder="Enter text here" value={content} onChange={handleTextChange} rows={15} cols={60} />
+        <div className="NewEntryPage">
+            <div className="NewEntryPageCenter">
+                <div className="NewEntryPageInstructions">
+                    <h2>Create a New Log Entry</h2>
+                    <p>Don't feel pressured to make it long or short. Write whatever you feel.</p>
                 </div>
-                <div className='NewEntrySubmit'>
-                    <input type="button" value="Submit" onClick={handleSubmitClick} />
+                <div className="NewEntryPageForm">
+                    <div className="NewEntryPageContent">
+                        <textarea name="content" placeholder="Enter text here" value={content} onChange={handleTextChange} spellCheck={true} />
+                    </div>
+                    <div className='NewEntryPageSubmit'>
+                        <button onClick={handleSubmitClick}>Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
