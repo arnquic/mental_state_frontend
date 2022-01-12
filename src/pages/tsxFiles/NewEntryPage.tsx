@@ -43,12 +43,14 @@ const NewEntryPage = (): JSX.Element => {
 
     async function handleSubmitClick(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
-        const analysis: number = analyzeContent();
-        const summitAuth: string | null = localStorage.getItem('summitAuth');
-        if (summitAuth) {
-            const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/logs`, { content: content, analysis: analysis }, { headers: { authorization: summitAuth } });
-            setAnalysisLog({ id: response.data.new_log.id, analysis: response.data.new_log.analysis, content: response.data.new_log.content, dateTime: response.data.new_log.dateTime });
-            navigation("/analysis");
+        if (content.length > 0) {
+            const analysis: number = analyzeContent();
+            const summitAuth: string | null = localStorage.getItem('summitAuth');
+            if (summitAuth) {
+                const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/logs`, { content: content, analysis: analysis }, { headers: { authorization: summitAuth } });
+                setAnalysisLog({ id: response.data.new_log.id, analysis: response.data.new_log.analysis, content: response.data.new_log.content, dateTime: response.data.new_log.dateTime });
+                navigation("/analysis");
+            }
         }
     }
 

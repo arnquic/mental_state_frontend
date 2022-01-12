@@ -1,8 +1,7 @@
 import "../cssFiles/DashboardLogElement.css";
 
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 import { AppContext } from "../../context/AppContext";
 
 interface IProps {
@@ -17,6 +16,8 @@ const DashboardLogElement = (props: IProps): JSX.Element => {
     const navigation: NavigateFunction = useNavigate();
 
     const { setAnalysisLog } = useContext(AppContext);
+
+    const [analysisFalsey, setAnalysisFalsey] = useState<Boolean>(false);
 
     const localTimeZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -47,6 +48,14 @@ const DashboardLogElement = (props: IProps): JSX.Element => {
         navigation("/analysis");
     }
 
+    function checkAnalysis(): void {
+        if (props.analysis === 0) {
+            setAnalysisFalsey(true)
+        }
+    }
+
+    useEffect(checkAnalysis, []);
+
     return (
         <div className='DashboardLogElement' onClick={handleLogElementClick}>
             {props.dateTime ?
@@ -64,7 +73,7 @@ const DashboardLogElement = (props: IProps): JSX.Element => {
                 :
                 null
             }
-            {props.analysis ?
+            {analysisFalsey ?
                 <div className="DashboardLogElementAnalysisHolder">
                     <div className="DashboardLogElementScoreOuterCircle">
                         <div className='DashboardLogElementScoreInnerCircle'>
