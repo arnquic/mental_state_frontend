@@ -109,3 +109,8 @@
     
     box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
 }
+
+.AccountInfoErrMsg {
+    height: 10px;
+    color: red;
+}

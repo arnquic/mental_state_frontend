@@ -50,8 +50,9 @@ const UserDashboardAccountPage = () => {
     const [changePasswordMatch, setChangePasswordMatch] = useState<boolean>(false);
     const [deleteAccountMatch, setDeleteAccountMatch] = useState<boolean>(false);
     const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
+    const [emailUpdateErr, setEmailUpdateErr] = useState<string>("");
     const [passwordUpdateErr, setPasswordUpdateErr] = useState<string>("");
-    const [deleteErr, setDeleteErr] = useState<string>("");
+    const [deleteAccountErr, setDeleteErr] = useState<string>("");
 
     function handleEmailFormChange(e: React.ChangeEvent<HTMLInputElement>): void {
         const { name, value } = e.target;
@@ -102,22 +103,64 @@ const UserDashboardAccountPage = () => {
     const handleEmailSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
         const summitAuth = localStorage.getItem("summitAuth");
-        if (summitAuth) {
-            const response: AxiosResponse = await axios.put(`${env.BACKEND_URL}/user/update`, { current_password: emailInfo.password, email: emailInfo.newEmail }, { headers: { authorization: summitAuth } });
-            console.log(response);
-            localStorage.setItem("summitAuth", response.data.summit_auth);
-            setUser(response.data.user_info);
+        if (summitAuth && emailInfo.password.length > 0) {
+            try {
+                const response: AxiosResponse = await axios.put(`${env.BACKEND_URL}/user/update`, { current_password: emailInfo.password, email: emailInfo.newEmail }, { headers: { authorization: summitAuth } });
+                if (response.data.user_info) {
+                    console.log(response);
+                    localStorage.setItem("summitAuth", response.data.summit_auth);
+                    setUser(response.data.user_info);
+                }
+                else {
+                    setEmailUpdateErr(response.data.message);
+                }
+            }
+            catch (err: Error | AxiosError | unknown) {
+                if (axios.isAxiosError(err)) {
+                    const response: AxiosResponse | undefined = err.response;
+                    if (response) {
+                        setEmailUpdateErr(response.data.message);
+                    }
+                    else {
+                        setEmailUpdateErr(err.message);
+                    }
+                }
+                else {
+                    setEmailUpdateErr("Unknown Error.");
+                }
+            }
         }
     }
 
     const handlePasswordSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
         const summitAuth = localStorage.getItem("summitAuth");
-        if (changePasswordMatch && summitAuth) {
-            const response: AxiosResponse = await axios.put(`${env.BACKEND_URL}/user/update`, { current_password: passwordInfo.currentPassword, new_password: passwordInfo.newPassword }, { headers: { authorization: summitAuth } });
-            console.log(response);
-            localStorage.setItem("summitAuth", response.data.summit_auth);
-            setUser(response.data.user_info);
+        if (changePasswordMatch && summitAuth && passwordInfo.currentPassword.length > 0 && passwordInfo.newPassword.length > 0) {
+            try {
+                const response: AxiosResponse = await axios.put(`${env.BACKEND_URL}/user/update`, { current_password: passwordInfo.currentPassword, new_password: passwordInfo.newPassword }, { headers: { authorization: summitAuth } });
+                if (response.data.user_info) {
+                    console.log(response);
+                    localStorage.setItem("summitAuth", response.data.summit_auth);
+                    setUser(response.data.user_info);
+                }
+                else {
+                    setPasswordUpdateErr(response.data.message);
+                }
+            }
+            catch (err: Error | AxiosError | unknown) {
+                if (axios.isAxiosError(err)) {
+                    const response: AxiosResponse | undefined = err.response;
+                    if (response) {
+                        setPasswordUpdateErr(response.data.message);
+                    }
+                    else {
+                        setPasswordUpdateErr(err.message);
+                    }
+                }
+                else {
+                    setPasswordUpdateErr("Unknown Error.");
+                }
+            }
         }
     }
 
@@ -131,34 +174,32 @@ const UserDashboardAccountPage = () => {
 
     async function handleConfirmDeleteClick(e: React.MouseEvent<HTMLButtonElement>): Promise<void> {
         e.preventDefault();
-        if (deleteAccountMatch && deleteAccountInfo.password.length > 0) {
-            const summitAuth: string | null = localStorage.getItem("summitAuth");
-            if (summitAuth) {
-                try {
-                    const response: AxiosResponse = await axios.delete(`${env.BACKEND_URL}/user/delete`, { headers: { authorization: summitAuth }, data: { password: deleteAccountInfo.password } });
-                    if (response.data.code === 0) {
-                        localStorage.removeItem("summitAuth");
-                        setAnalysisLog(defaultLog);
-                        setLogs([defaultLog]);
-                        setUser(null);
-                    }
-                    else {
+        const summitAuth: string | null = localStorage.getItem("summitAuth");
+        if (deleteAccountMatch && summitAuth && deleteAccountInfo.password.length > 0) {
+            try {
+                const response: AxiosResponse = await axios.delete(`${env.BACKEND_URL}/user/delete`, { headers: { authorization: summitAuth }, data: { password: deleteAccountInfo.password } });
+                if (response.data.code === 0) {
+                    localStorage.removeItem("summitAuth");
+                    setAnalysisLog(defaultLog);
+                    setLogs([defaultLog]);
+                    setUser(null);
+                }
+                else {
+                    setDeleteErr(response.data.message);
+                }
+            }
+            catch (err: Error | AxiosError | unknown) {
+                if (axios.isAxiosError(err)) {
+                    const response: AxiosResponse | undefined = err.response;
+                    if (response) {
                         setDeleteErr(response.data.message);
                     }
-                }
-                catch (err: Error | AxiosError | unknown) {
-                    if (axios.isAxiosError(err)) {
-                        const response: AxiosResponse | undefined = err.response;
-                        if (response) {
-                            setDeleteErr(response.data.message);
-                        }
-                        else {
-                            setDeleteErr(err.message);
-                        }
-                    }
                     else {
-                        setDeleteErr("Unknown Error.");
+                        setDeleteErr(err.message);
                     }
+                }
+                else {
+                    setDeleteErr("Unknown Error.");
                 }
             }
         }
@@ -194,6 +235,9 @@ const UserDashboardAccountPage = () => {
                             <div>
                                 <input className="UserDashboardAccountPageTextInput" name="password" type="password" placeholder="Enter your password" value={emailInfo.password} onChange={handleEmailFormChange} />
                             </div>
+                            <div className='AccountInfoErrMsg'>
+                                <p>{emailUpdateErr}</p>
+                            </div>
                             <input className="UserDashboardAccountPageSubmitBtn" type="submit" placeholder="Submit" />
                         </form>
                         <h3 className="UserDashboardAccountPageSubHeader">Change Password</h3>
@@ -208,6 +252,9 @@ const UserDashboardAccountPage = () => {
                             <div>
                                 <input className="UserDashboardAccountPageTextInput" name="confirmPassword" type="password" placeholder="Confirm new password" value={passwordInfo.confirmPassword} onChange={handlePasswordFormChange} />
                                 <span className='UpdatePasswordMatch'>{changePasswordMatch ? "" : " Passwords must match."}</span>
+                            </div>
+                            <div className='AccountInfoErrMsg'>
+                                <p>{passwordUpdateErr}</p>
                             </div>
                             <input className="UserDashboardAccountPageSubmitBtn" type="submit" placeholder="Submit" />
                         </form>
@@ -224,6 +271,9 @@ const UserDashboardAccountPage = () => {
                                     <div>
                                         <input className="UserDashboardAccountPageTextInput" name="confirmPassword" type="password" placeholder="Confirm your password" value={deleteAccountInfo.confirmPassword} onChange={handleDeleteAccountFormChange} />
                                         <span className='UpdatePasswordMatch'>{deleteAccountMatch ? "" : " Passwords must match."}</span>
+                                    </div>
+                                    <div className='AccountInfoErrMsg'>
+                                        <p>{deleteAccountErr}</p>
                                     </div>
                                     <button className="DeleteAccountButton" onClick={(e): void => { handleConfirmDeleteClick(e) }}>Confirm - There's no going back.</button>
                                 </>
