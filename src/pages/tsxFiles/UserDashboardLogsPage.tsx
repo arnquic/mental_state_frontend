@@ -7,6 +7,7 @@ import env from 'react-dotenv';
 import axios, { AxiosResponse } from 'axios';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/AppContext';
+import { Link } from "react-router-dom";
 
 const UserDashboardLogsPage = (): JSX.Element => {
 
@@ -27,7 +28,7 @@ const UserDashboardLogsPage = (): JSX.Element => {
         return (
             <>
                 {
-                    logs[0].content
+                    logs[0]
                         ?
                         logs.map<JSX.Element>((log) => {
                             return (
@@ -35,7 +36,14 @@ const UserDashboardLogsPage = (): JSX.Element => {
                             )
                         })
                         :
-                        null
+                        <>
+                            <p>You don't have any Logs yet.
+                                <span>
+                                    {" "}
+                                    <Link to="/newEntry">Make your first one here!</Link>
+                                </span>
+                            </p>
+                        </>
                 }
             </>
         )

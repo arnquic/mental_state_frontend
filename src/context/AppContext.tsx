@@ -1,5 +1,9 @@
 import React, { useState, createContext } from "react";
 
+export function stringEmpty(str: string): boolean {
+    return (str === "" || str === undefined || str === null);;
+}
+
 interface IUser {
     firstName: string;
     lastName: string;

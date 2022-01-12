@@ -4,7 +4,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import React from 'react';
 import env from 'react-dotenv';
 import { useState, useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { AppContext, stringEmpty } from '../../context/AppContext';
 import { Link } from 'react-router-dom';
 
 interface ILoginInfo {
@@ -34,24 +34,30 @@ const LoginPage = (): JSX.Element => {
 
     async function submitLogin(e: React.FormEvent<HTMLFormElement>): Promise<void> {
         e.preventDefault();
-        try {
-            const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/user/login`, { email: loginInfo.email, password: loginInfo.password });
-            setUser(response.data.user_info);
-            localStorage.setItem('summitAuth', response.data.summit_auth);
+        const anyInfoMissing: boolean = (stringEmpty(loginInfo.email) || stringEmpty(loginInfo.password));
+        if (anyInfoMissing) {
+            setErr("All values must be provided.");
         }
-        catch (err: Error | AxiosError | unknown) {
-            if (axios.isAxiosError(err)) {
-                const response: AxiosResponse | undefined = err.response;
-                if (response) {
-                    console.log(response.data.message);
-                    setErr(response.data.message);
+        else {
+            try {
+                const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/user/login`, { email: loginInfo.email, password: loginInfo.password });
+                setUser(response.data.user_info);
+                localStorage.setItem('summitAuth', response.data.summit_auth);
+            }
+            catch (err: Error | AxiosError | unknown) {
+                if (axios.isAxiosError(err)) {
+                    const response: AxiosResponse | undefined = err.response;
+                    if (response) {
+                        console.log(response.data.message);
+                        setErr(response.data.message);
+                    }
+                    else {
+                        setErr(err.message);
+                    }
                 }
                 else {
-                    setErr(err.message);
+                    setErr("Unknown Error.");
                 }
-            }
-            else {
-                setErr("Unknown Error.");
             }
         }
     }

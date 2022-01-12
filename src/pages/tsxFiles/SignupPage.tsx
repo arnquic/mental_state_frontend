@@ -3,9 +3,9 @@ import '../cssFiles/SignupPage.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import env from 'react-dotenv';
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useState, useEffect, useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { AppContext, stringEmpty } from '../../context/AppContext';
 
 interface ISignupInfo {
     firstName: string,
@@ -27,6 +27,7 @@ const SignupPage = (): JSX.Element => {
 
     const [signupInfo, setSignupInfo] = useState<ISignupInfo>(defaultSignupInfo);
     const [passwordMatch, setPasswordMatch] = useState<boolean>(false);
+    const [err, setErr] = useState<string>("");
 
     const { setUser } = useContext(AppContext);
 
@@ -41,11 +42,40 @@ const SignupPage = (): JSX.Element => {
     async function submitSignup(e: React.FormEvent<HTMLFormElement>): Promise<void> {
         e.preventDefault();
         if (signupInfo.confirmPassword === signupInfo.password) {
-            const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/user`, { first_name: signupInfo.firstName, last_name: signupInfo.lastName, email: signupInfo.email, password: signupInfo.password });
-            setUser(response.data.user_info);
-            localStorage.setItem('summitAuth', response.data.summit_auth);
+            const anyInfoMissing: boolean = (stringEmpty(signupInfo.firstName) || stringEmpty(signupInfo.lastName) || stringEmpty(signupInfo.email) || stringEmpty(signupInfo.password))
+            if (anyInfoMissing) {
+                setErr("All values must be provided.")
+            }
+            else {
+                try {
+                    const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/user`, { first_name: signupInfo.firstName, last_name: signupInfo.lastName, email: signupInfo.email, password: signupInfo.password });
+                    if (response.data.user_info) {
+                        setUser(response.data.user_info);
+                        localStorage.setItem('summitAuth', response.data.summit_auth);
+                    }
+                    else {
+                        setErr(response.data.message);
+                    }
+                }
+                catch (err: Error | AxiosError | unknown) {
+                    if (axios.isAxiosError(err)) {
+                        const response: AxiosResponse | undefined = err.response;
+                        if (response) {
+                            console.log(response.data.message);
+                            setErr(response.data.message);
+                        }
+                        else {
+                            setErr(err.message);
+                        }
+                    }
+                    else {
+                        setErr("Unknown Error.");
+                    }
+                }
+            }
         }
     }
+
 
     function checkPasswordMatch(): void {
         if (signupInfo.password === signupInfo.confirmPassword) {
@@ -67,23 +97,26 @@ const SignupPage = (): JSX.Element => {
                 onSubmit={(e) => { submitSignup(e); }}
             >
                 <div className='SignupFirstName'>
-                    <input name="firstName" type="text" placeholder="First Name" value={signupInfo.firstName} onChange={handleFormChange} />
+                    <input className="SignupTextInput" name="firstName" type="text" placeholder="First Name" value={signupInfo.firstName} onChange={handleFormChange} />
                 </div>
                 <div className='SignupLastName'>
-                    <input name="lastName" type="text" placeholder="Last Name" value={signupInfo.lastName} onChange={handleFormChange} />
+                    <input className="SignupTextInput" name="lastName" type="text" placeholder="Last Name" value={signupInfo.lastName} onChange={handleFormChange} />
                 </div>
                 <div className='SignupEmail'>
-                    <input name="email" type="email" placeholder="Email" value={signupInfo.email} onChange={handleFormChange} />
+                    <input className="SignupTextInput" name="email" type="email" placeholder="Email" value={signupInfo.email} onChange={handleFormChange} />
                 </div>
                 <div className='SignupPassword'>
-                    <input name="password" type="password" placeholder="Password" value={signupInfo.password} onChange={handleFormChange} />
+                    <input className="SignupTextInput" name="password" type="password" placeholder="Password" value={signupInfo.password} onChange={handleFormChange} />
                     <span className='SignupPasswordMatch'>{passwordMatch ? "" : " Passwords must match."}</span>
                 </div>
                 <div className='SignupConfirmPassword'>
-                    <input name="confirmPassword" type="password" placeholder="Confirm Password" value={signupInfo.confirmPassword} onChange={handleFormChange} />
+                    <input className="SignupTextInput" name="confirmPassword" type="password" placeholder="Confirm Password" value={signupInfo.confirmPassword} onChange={handleFormChange} />
                     <span className='SignupPasswordMatch'>{passwordMatch ? "" : " Passwords must match."}</span>
                 </div>
-                <input type="submit" value="Submit" />
+                <div className='SignupErrMsg'>
+                    <p>{err}</p>
+                </div>
+                <input className="SignupSubmit" type="submit" value="Submit" />
             </form >
             <div className='SignupToLogin'>
                 <p>Already have an account?</p>
