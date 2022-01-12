@@ -1,6 +1,6 @@
 import '../cssFiles/LoginPage.css';
 
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import React from 'react';
 import env from 'react-dotenv';
 import { useState, useContext } from 'react';
@@ -20,6 +20,7 @@ const LoginPage = (): JSX.Element => {
     }
 
     const [loginInfo, setLoginInfo] = useState<ILoginInfo>(defaultLoginInfo);
+    const [err, setErr] = useState<string>("");
 
     const { setUser } = useContext(AppContext);
 
@@ -33,9 +34,26 @@ const LoginPage = (): JSX.Element => {
 
     async function submitLogin(e: React.FormEvent<HTMLFormElement>): Promise<void> {
         e.preventDefault();
-        const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/user/login`, { email: loginInfo.email, password: loginInfo.password });
-        setUser(response.data.user_info);
-        localStorage.setItem('summitAuth', response.data.summit_auth);
+        try {
+            const response: AxiosResponse = await axios.post(`${env.BACKEND_URL}/user/login`, { email: loginInfo.email, password: loginInfo.password });
+            setUser(response.data.user_info);
+            localStorage.setItem('summitAuth', response.data.summit_auth);
+        }
+        catch (err: Error | AxiosError | unknown) {
+            if (axios.isAxiosError(err)) {
+                const response: AxiosResponse | undefined = err.response;
+                if (response) {
+                    console.log(response.data.message);
+                    setErr(response.data.message);
+                }
+                else {
+                    setErr(err.message);
+                }
+            }
+            else {
+                setErr("Unknown Error.");
+            }
+        }
     }
 
     return (
@@ -47,12 +65,15 @@ const LoginPage = (): JSX.Element => {
                 onSubmit={(e) => { submitLogin(e); }}
             >
                 <div className='LoginEmail'>
-                    <input name="email" type="email" placeholder="Email" value={loginInfo.email} onChange={handleFormChange} />
+                    <input className="LoginTextInput" name="email" type="email" placeholder="Email" value={loginInfo.email} onChange={handleFormChange} />
                 </div>
                 <div className='LoginPassword'>
-                    <input name="password" type="password" placeholder="Password" value={loginInfo.password} onChange={handleFormChange} />
+                    <input className="LoginTextInput" name="password" type="password" placeholder="Password" value={loginInfo.password} onChange={handleFormChange} />
                 </div>
-                <input type="submit" value="Submit" />
+                <div className='LoginErrMsg'>
+                    <p>{err}</p>
+                </div>
+                <input className="LoginSubmit" type="submit" value="Submit" />
             </form >
             <div className='LoginToSignup'>
                 <p>Don't have an account?</p>

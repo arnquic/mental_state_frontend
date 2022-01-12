@@ -32,6 +32,7 @@ const Navbar = (): JSX.Element => {
         setLogs([defaultLog]);
         setUser(null);
         localStorage.removeItem("summitAuth");
+        navigation("/");
     }
 
     return (

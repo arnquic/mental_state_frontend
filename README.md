@@ -72,4 +72,4 @@ See planningStuff/ERD.jpg
 
 ## Sources
 - Journal article on use of absolutist words in individuals with depression, anxienty, and suicidal ideation as compared to the general population: https://journals.sagepub.com/doi/full/10.1177/2167702617747074
-- IBM Watson Tone Analyzer (might use): 
+- IBM Watson Tone Analyzer (might use): https://tone-analyzer-demo.ng.bluemix.net/?_ga=2.47635111.1230792974.1641835743-133657794.1641835743
