@@ -1,15 +1,79 @@
 .Navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
     display: grid;
-    grid-template-columns: 100px 1fr;
-    grid-template-rows: 50px;
+    grid-template-columns: 40px 100px 1fr 40px;
+    grid-template-rows: 80px;
+    background-color: rgba(240, 238, 239, 1.0);
+    border-bottom: 0.3px solid gray;
 }
 
-.NavbarRight {
+.NavbarSummitHolder {
+    grid-column: 2;
     display: flex;
-    justify-content: right;
     align-items: center;
+    justify-content: left;
 }
 
 .NavbarSummit:hover {
     cursor: pointer;
+}
+
+.NavbarRight {
+    grid-column: 3;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 30px;
+
+    font-size: 14px;
+}
+
+.NavbarWelcomeOptionsHolder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.NavbarOptions {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.Navbar button {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 15px;
+}
+
+.Navbar button:hover {
+    cursor: pointer;
+}
+
+.NavbarLoginBtn {
+    width: 70px;
+    height: 45px;
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}
+
+.NavbarLoginBtn:hover {
+        box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+}
+
+.NavbarLogoutBtn {
+    width: 70px;
+    height: 45px;
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}
+
+.NavbarLogoutBtn:hover {
+        box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
 }

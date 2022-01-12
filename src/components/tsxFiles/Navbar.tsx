@@ -38,20 +38,25 @@ const Navbar = (): JSX.Element => {
         <div className="Navbar">
             {user ?
                 <>
-                    <h4 className="NavbarSummit" onClick={handleSummitClick}>Summit</h4>
+                    <div className="NavbarSummitHolder">
+                        <h4 className="NavbarSummit" onClick={handleSummitClick}>Summit</h4>
+                    </div>
                     <div className="NavbarRight">
-                        <button onClick={handleNewEntryClick}>New Entry</button>
-                        <button onClick={handleDashboardClick}>Dashboard</button>
-                        <div className="NavbarUserLogout">
+                        <div className="NavbarWelcomeOptionsHolder">
                             <p>Welcome, {user.firstName}</p>
-                            <button className="NavbarLogoutBtn" onClick={handleLogoutClick}>Logout</button>
+                            <div className="NavbarOptions">
+                                <button onClick={handleNewEntryClick}>New Entry</button>
+                                <button onClick={handleDashboardClick}>Dashboard</button>
+                            </div>
                         </div>
+                        <button className="NavbarLogoutBtn" onClick={handleLogoutClick}>Logout</button>
                     </div>
                 </>
                 :
                 <>
-                    <h4 className="NavbarSummit" onClick={handleSummitClick}>Summit</h4>
-                    <div className="NavbarRight">
+                    <div className="NavbarSummitHolder">
+                        <h4 className="NavbarSummit" onClick={handleSummitClick}>Summit</h4>
+                    </div>                    <div className="NavbarRight">
                         <button className="NavbarLoginBtn" onClick={handleLoginClick}>Login</button>
                     </div>
                 </>
