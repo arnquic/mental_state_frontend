@@ -3,9 +3,9 @@ import UserDashboardSelections from '../../components/tsxFiles/UserDashboardSele
 
 import React from 'react';
 import env from "react-dotenv";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { useState, useEffect, useContext } from "react";
-import { AppContext } from "../../context/AppContext";
+import { AppContext, defaultLog } from "../../context/AppContext";
 import App from "../../App";
 
 interface IEmailInfo {
@@ -16,6 +16,11 @@ interface IEmailInfo {
 interface IPasswordInfo {
     currentPassword: string,
     newPassword: string,
+    confirmPassword: string
+}
+
+interface IDeleteAccountInfo {
+    password: string,
     confirmPassword: string
 }
 
@@ -30,14 +35,23 @@ const defaultPasswordInfo: IPasswordInfo = {
     confirmPassword: ""
 }
 
+const defaultDeleteAccountInfo: IDeleteAccountInfo = {
+    password: "",
+    confirmPassword: ""
+}
+
 const UserDashboardAccountPage = () => {
 
-    const { user, setUser } = useContext(AppContext);
+    const { user, setUser, setAnalysisLog, setLogs } = useContext(AppContext);
 
     const [emailInfo, setEmailInfo] = useState<IEmailInfo>(defaultEmailInfo);
     const [passwordInfo, setPasswordInfo] = useState<IPasswordInfo>(defaultPasswordInfo);
-    const [passwordMatch, setPasswordMatch] = useState<boolean>(false);
+    const [deleteAccountInfo, setDeleteAccountInfo] = useState<IDeleteAccountInfo>(defaultDeleteAccountInfo);
+    const [changePasswordMatch, setChangePasswordMatch] = useState<boolean>(false);
+    const [deleteAccountMatch, setDeleteAccountMatch] = useState<boolean>(false);
     const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
+    const [passwordUpdateErr, setPasswordUpdateErr] = useState<string>("");
+    const [deleteErr, setDeleteErr] = useState<string>("");
 
     function handleEmailFormChange(e: React.ChangeEvent<HTMLInputElement>): void {
         const { name, value } = e.target;
@@ -55,18 +69,38 @@ const UserDashboardAccountPage = () => {
         })
     }
 
-    function checkPasswordsMatch(): void {
+    function handleDeleteAccountFormChange(e: React.ChangeEvent<HTMLInputElement>): void {
+        const { name, value } = e.target;
+        setDeleteAccountInfo({
+            ...deleteAccountInfo,
+            [name]: value
+        })
+    }
+
+    function checkChangePasswordPasswordsMatch(): void {
         if (passwordInfo.newPassword === passwordInfo.confirmPassword) {
-            setPasswordMatch(true);
+            setChangePasswordMatch(true);
         }
         else {
-            setPasswordMatch(false);
+            setChangePasswordMatch(false);
         }
     }
 
+    useEffect(checkChangePasswordPasswordsMatch, [passwordInfo]);
+
+    function checkDeleteAccountPasswordsMatch(): void {
+        if (deleteAccountInfo.password === deleteAccountInfo.confirmPassword) {
+            setDeleteAccountMatch(true);
+        }
+        else {
+            setDeleteAccountMatch(false);
+        }
+    }
+
+    useEffect(checkDeleteAccountPasswordsMatch, [deleteAccountInfo]);
+
     const handleEmailSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
-        console.log("emailSubmitTriggered");
         const summitAuth = localStorage.getItem("summitAuth");
         if (summitAuth) {
             const response: AxiosResponse = await axios.put(`${env.BACKEND_URL}/user/update`, { current_password: emailInfo.password, email: emailInfo.newEmail }, { headers: { authorization: summitAuth } });
@@ -78,18 +112,14 @@ const UserDashboardAccountPage = () => {
 
     const handlePasswordSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
-        console.log("passwordSubmitTriggered");
         const summitAuth = localStorage.getItem("summitAuth");
-        if (passwordMatch && summitAuth) {
-            console.log("password update sent to db.");
+        if (changePasswordMatch && summitAuth) {
             const response: AxiosResponse = await axios.put(`${env.BACKEND_URL}/user/update`, { current_password: passwordInfo.currentPassword, new_password: passwordInfo.newPassword }, { headers: { authorization: summitAuth } });
             console.log(response);
             localStorage.setItem("summitAuth", response.data.summit_auth);
             setUser(response.data.user_info);
         }
     }
-
-    useEffect(checkPasswordsMatch, [passwordInfo]);
 
     function handleDeleteClick(): void {
         setConfirmDelete(true);
@@ -101,6 +131,37 @@ const UserDashboardAccountPage = () => {
 
     async function handleConfirmDeleteClick(e: React.MouseEvent<HTMLButtonElement>): Promise<void> {
         e.preventDefault();
+        if (deleteAccountMatch && deleteAccountInfo.password.length > 0) {
+            const summitAuth: string | null = localStorage.getItem("summitAuth");
+            if (summitAuth) {
+                try {
+                    const response: AxiosResponse = await axios.delete(`${env.BACKEND_URL}/user/delete`, { headers: { authorization: summitAuth }, data: { password: deleteAccountInfo.password } });
+                    if (response.data.code === 0) {
+                        localStorage.removeItem("summitAuth");
+                        setAnalysisLog(defaultLog);
+                        setLogs([defaultLog]);
+                        setUser(null);
+                    }
+                    else {
+                        setDeleteErr(response.data.message);
+                    }
+                }
+                catch (err: Error | AxiosError | unknown) {
+                    if (axios.isAxiosError(err)) {
+                        const response: AxiosResponse | undefined = err.response;
+                        if (response) {
+                            setDeleteErr(response.data.message);
+                        }
+                        else {
+                            setDeleteErr(err.message);
+                        }
+                    }
+                    else {
+                        setDeleteErr("Unknown Error.");
+                    }
+                }
+            }
+        }
     }
 
     return (
@@ -142,11 +203,11 @@ const UserDashboardAccountPage = () => {
                             </div>
                             <div>
                                 <input className="UserDashboardAccountPageTextInput" name="newPassword" type="password" placeholder="Enter a new password" value={passwordInfo.newPassword} onChange={handlePasswordFormChange} />
-                                <span className='UpdatePasswordMatch'>{passwordMatch ? "" : "Passwords must match."}</span>
+                                <span className='UpdatePasswordMatch'>{changePasswordMatch ? "" : " Passwords must match."}</span>
                             </div>
                             <div>
                                 <input className="UserDashboardAccountPageTextInput" name="confirmPassword" type="password" placeholder="Confirm new password" value={passwordInfo.confirmPassword} onChange={handlePasswordFormChange} />
-                                <span className='UpdatePasswordMatch'>{passwordMatch ? "" : "Passwords must match."}</span>
+                                <span className='UpdatePasswordMatch'>{changePasswordMatch ? "" : " Passwords must match."}</span>
                             </div>
                             <input className="UserDashboardAccountPageSubmitBtn" type="submit" placeholder="Submit" />
                         </form>
@@ -156,6 +217,14 @@ const UserDashboardAccountPage = () => {
                                 ?
                                 <>
                                     <button className="CancelDeleteAccountButton" onClick={handleCancelDeleteClick}>Cancel</button>
+                                    <div>
+                                        <input className="UserDashboardAccountPageTextInput" name="password" type="password" placeholder="Enter your password" value={deleteAccountInfo.password} onChange={handleDeleteAccountFormChange} />
+                                        <span className='UpdatePasswordMatch'>{deleteAccountMatch ? "" : " Passwords must match."}</span>
+                                    </div>
+                                    <div>
+                                        <input className="UserDashboardAccountPageTextInput" name="confirmPassword" type="password" placeholder="Confirm your password" value={deleteAccountInfo.confirmPassword} onChange={handleDeleteAccountFormChange} />
+                                        <span className='UpdatePasswordMatch'>{deleteAccountMatch ? "" : " Passwords must match."}</span>
+                                    </div>
                                     <button className="DeleteAccountButton" onClick={(e): void => { handleConfirmDeleteClick(e) }}>Confirm - There's no going back.</button>
                                 </>
                                 :
