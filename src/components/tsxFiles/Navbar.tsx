@@ -7,7 +7,7 @@ import { useContext } from "react";
 
 const Navbar = (): JSX.Element => {
 
-    const { user, setUser, setNewLog, setLogs } = useContext(AppContext);
+    const { user, setUser, setAnalysisLog, setLogs } = useContext(AppContext);
 
     const navigation: NavigateFunction = useNavigate();
 
@@ -28,7 +28,7 @@ const Navbar = (): JSX.Element => {
     }
 
     function handleLogoutClick(e: React.MouseEvent<HTMLButtonElement>): void {
-        setNewLog(defaultLog);
+        setAnalysisLog(defaultLog);
         setLogs([defaultLog]);
         setUser(null);
         localStorage.removeItem("summitAuth");

@@ -28,10 +28,10 @@ function App() {
   // -----------------------------
   // ** TODO: Remove setNewLog **
   // -----------------------------
-  const { user, setUser, setNewLog } = useContext(AppContext);
+  const { user, setUser, setAnalysisLog } = useContext(AppContext);
 
   async function verifyUser(): Promise<void> {
-    setNewLog(testLog);
+    setAnalysisLog(testLog);
     const summitAuth: string | null = localStorage.getItem('summitAuth');
     if (summitAuth) {
       const response: AxiosResponse = await axios.get(`${env.BACKEND_URL}/user/verify`, { headers: { authorization: summitAuth } });

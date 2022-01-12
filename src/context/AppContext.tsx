@@ -19,8 +19,8 @@ export interface ILog {
 interface IContext {
     user: TUser;
     setUser: React.Dispatch<React.SetStateAction<TUser>>;
-    newLog: ILog;
-    setNewLog: React.Dispatch<React.SetStateAction<ILog>>
+    analysisLog: ILog;
+    setAnalysisLog: React.Dispatch<React.SetStateAction<ILog>>
     logs: ILog[];
     setLogs: React.Dispatch<React.SetStateAction<ILog[]>>;
 }
@@ -34,8 +34,8 @@ export const defaultLog: ILog = {
 const defaultState: IContext = {
     user: null,
     setUser: () => { },
-    newLog: defaultLog,
-    setNewLog: () => { },
+    analysisLog: defaultLog,
+    setAnalysisLog: () => { },
     logs: [defaultLog],
     setLogs: () => { }
 }
@@ -49,14 +49,14 @@ interface IChildrenProps {
 function AppProvider({ children }: IChildrenProps): JSX.Element {
 
     const [user, setUser] = useState<TUser>(null);
-    const [newLog, setNewLog] = useState<ILog>(defaultLog);
+    const [analysisLog, setAnalysisLog] = useState<ILog>(defaultLog);
     const [logs, setLogs] = useState<ILog[]>([defaultLog]);
 
     const state: IContext = {
         user: user,
         setUser: setUser,
-        newLog: newLog,
-        setNewLog: setNewLog,
+        analysisLog: analysisLog,
+        setAnalysisLog: setAnalysisLog,
         logs: logs,
         setLogs: setLogs
     }

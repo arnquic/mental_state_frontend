@@ -7,16 +7,16 @@ import { Navigate } from 'react-router-dom';
 
 const AnalysisPage = (): JSX.Element => {
 
-    const { newLog } = useContext(AppContext);
+    const { analysisLog } = useContext(AppContext);
 
     return (
         <div className="AnalysisPage">
             {
-                newLog ?
+                analysisLog ?
                     <div className="AnalysisPageCenter">
                         <div className="AnalysisPageLogContent">
                             <h2 className="AnalysisPageLogContentHeader">You logged:</h2>
-                            <p>{newLog.content}</p>
+                            <p>{analysisLog.content}</p>
                         </div>
                         <div className='AnalysisPageResult'>
                             <h2 className="AnalysisPageResultHeader">Our Analysis:</h2>
@@ -24,7 +24,7 @@ const AnalysisPage = (): JSX.Element => {
                                 <div className="AnalysisPageScoreHolder">
                                     <div className="AnalysisPageScoreOuterCircle">
                                         <div className="AnalysisPageScoreInnerCircle">
-                                            <h1>{newLog.analysis}</h1>
+                                            <h1>{analysisLog.analysis}</h1>
                                         </div>
                                     </div>
                                 </div>
