@@ -12,15 +12,26 @@ import React from 'react';
 import env from 'react-dotenv';
 import axios, { AxiosResponse } from 'axios';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { AppContext } from './context/AppContext';
+import { AppContext, ILog } from './context/AppContext';
 import { useContext, useEffect } from 'react';
 
 
 function App() {
 
-  const { user, setUser } = useContext(AppContext);
+  const testLog: ILog = {
+    id: 1,
+    content: "Test Log info.",
+    analysis: 13.3,
+    dateTime: "Mon, 10 Jan 2022 17:49:50 GMT"
+  }
+
+  // -----------------------------
+  // ** TODO: Remove setNewLog **
+  // -----------------------------
+  const { user, setUser, setNewLog } = useContext(AppContext);
 
   async function verifyUser(): Promise<void> {
+    setNewLog(testLog);
     const summitAuth: string | null = localStorage.getItem('summitAuth');
     if (summitAuth) {
       const response: AxiosResponse = await axios.get(`${env.BACKEND_URL}/user/verify`, { headers: { authorization: summitAuth } });

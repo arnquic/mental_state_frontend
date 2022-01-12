@@ -1,0 +1,96 @@
+.AnalysisPage {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+
+.AnalysisPageCenter {
+    grid-column: 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.AnalysisPageLogContent {
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    background-color: rgba(240, 238, 239, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}
+
+.AnalysisPageLogContentHeader {
+    border-bottom: 0.5px solid gray;
+}
+
+.AnalysisPageResult {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    background-color: rgba(240, 238, 239, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}
+
+.AnalysisPageResultHeader {
+    border-bottom: 0.5px solid gray;
+}
+
+.AnalysisPageScoreExplanationHolder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.AnalysisPageScoreHolder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AnalysisPageScoreOuterCircle {
+    height: 200px;
+    width: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(240, 238, 239, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+}
+
+.AnalysisPageScoreInnerCircle {
+    height: 150px;
+    width: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(240, 238, 239, 1.0);
+
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+}
+
+.AnalysisPageExplanation {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+}

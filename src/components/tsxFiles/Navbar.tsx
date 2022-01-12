@@ -34,6 +34,10 @@ const Navbar = (): JSX.Element => {
         localStorage.removeItem("summitAuth");
     }
 
+    function handleAnalysisTestClick(): void {
+        navigation("/analysis");
+    }
+
     return (
         <div className="Navbar">
             {user ?
@@ -42,6 +46,7 @@ const Navbar = (): JSX.Element => {
                         <h4 className="NavbarSummit" onClick={handleSummitClick}>Summit</h4>
                     </div>
                     <div className="NavbarRight">
+                        <button onClick={handleAnalysisTestClick}>DEV: Analysis</button>
                         <div className="NavbarWelcomeOptionsHolder">
                             <p>Welcome, {user.firstName}</p>
                             <div className="NavbarOptions">
