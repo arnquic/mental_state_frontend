@@ -90,37 +90,39 @@ const SignupPage = (): JSX.Element => {
 
     return (
         <div className='SignupPage'>
-            <div className='SignupTitle'>
-                <h2>Create New Account</h2>
-            </div>
-            <form className='SignupForm'
-                onSubmit={(e) => { submitSignup(e); }}
-            >
-                <div className='SignupFirstName'>
-                    <input className="SignupTextInput" name="firstName" type="text" placeholder="First Name" value={signupInfo.firstName} onChange={handleFormChange} />
+            <div className='SignupPageCenter'>
+                <div className='SignupTitle'>
+                    <h2>Create New Account</h2>
                 </div>
-                <div className='SignupLastName'>
-                    <input className="SignupTextInput" name="lastName" type="text" placeholder="Last Name" value={signupInfo.lastName} onChange={handleFormChange} />
+                <form className='SignupForm'
+                    onSubmit={(e) => { submitSignup(e); }}
+                >
+                    <div className='SignupFirstName'>
+                        <input className="SignupTextInput" name="firstName" type="text" placeholder="First Name" value={signupInfo.firstName} onChange={handleFormChange} />
+                    </div>
+                    <div className='SignupLastName'>
+                        <input className="SignupTextInput" name="lastName" type="text" placeholder="Last Name" value={signupInfo.lastName} onChange={handleFormChange} />
+                    </div>
+                    <div className='SignupEmail'>
+                        <input className="SignupTextInput" name="email" type="email" placeholder="Email" value={signupInfo.email} onChange={handleFormChange} />
+                    </div>
+                    <div className='SignupPassword'>
+                        <input className="SignupTextInput" name="password" type="password" placeholder="Password" value={signupInfo.password} onChange={handleFormChange} />
+                        <span className='SignupPasswordMatch'>{passwordMatch ? "" : " Passwords must match."}</span>
+                    </div>
+                    <div className='SignupConfirmPassword'>
+                        <input className="SignupTextInput" name="confirmPassword" type="password" placeholder="Confirm Password" value={signupInfo.confirmPassword} onChange={handleFormChange} />
+                        <span className='SignupPasswordMatch'>{passwordMatch ? "" : " Passwords must match."}</span>
+                    </div>
+                    <div className='SignupErrMsg'>
+                        <p>{err}</p>
+                    </div>
+                    <input className="SignupSubmit" type="submit" value="Submit" />
+                </form >
+                <div className='SignupToLogin'>
+                    <p>Already have an account?</p>
+                    <Link to="/login">Login here.</Link>
                 </div>
-                <div className='SignupEmail'>
-                    <input className="SignupTextInput" name="email" type="email" placeholder="Email" value={signupInfo.email} onChange={handleFormChange} />
-                </div>
-                <div className='SignupPassword'>
-                    <input className="SignupTextInput" name="password" type="password" placeholder="Password" value={signupInfo.password} onChange={handleFormChange} />
-                    <span className='SignupPasswordMatch'>{passwordMatch ? "" : " Passwords must match."}</span>
-                </div>
-                <div className='SignupConfirmPassword'>
-                    <input className="SignupTextInput" name="confirmPassword" type="password" placeholder="Confirm Password" value={signupInfo.confirmPassword} onChange={handleFormChange} />
-                    <span className='SignupPasswordMatch'>{passwordMatch ? "" : " Passwords must match."}</span>
-                </div>
-                <div className='SignupErrMsg'>
-                    <p>{err}</p>
-                </div>
-                <input className="SignupSubmit" type="submit" value="Submit" />
-            </form >
-            <div className='SignupToLogin'>
-                <p>Already have an account?</p>
-                <Link to="/login">Login here.</Link>
             </div>
         </div>
     )

@@ -1,8 +1,21 @@
 .SignupPage {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.SignupPageCenter {
+    grid-column: 2;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    align-items: flex-start;
+    gap: 30px
+}
+
+.SignupTitle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .SignupForm {
@@ -51,4 +64,13 @@
     cursor: pointer;
 
     box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+}
+
+.SignupToLogin {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
