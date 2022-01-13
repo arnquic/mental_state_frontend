@@ -14,9 +14,9 @@ const HomePage = (): JSX.Element => {
                 <h1>Welcome to Summit!</h1>
                 <p>While no one ever reaches a "summit" in life and stays there, we're here to help you understand your journey through life's ups and downs, knowing that another summit is entirely reachable.</p>
             </div>
-            <HomeElement imgLeft={true} img={Summit_Logo} imgAlt='New Log' heading='Test 1' text='Some test paragraph text content.' />
-            <HomeElement imgLeft={false} img={Summit_Dashboard} imgAlt='User Dashboard' heading='Test 2' text='Some test paragraph text content.' />
-            <HomeElement imgLeft={true} img={Summit_Analysis} imgAlt='Log Analysis' heading='Test 3' text='Some test paragraph text content.' />
+            <HomeElement imgLeft={true} img={Summit_Logo} imgAlt='New Log' heading='Log Your Thoughts' text="Do it as often as you like, though at least logging daily increases the understanding you'll get when looking back on your logs." />
+            <HomeElement imgLeft={false} img={Summit_Analysis} imgAlt='Log Analysis' heading='Linguistic Analysis of Your Logs' text='There to help give you an idea of whether your thinking might be that of a depressed or anxious state.' />
+            <HomeElement imgLeft={true} img={Summit_Dashboard} imgAlt='User Dashboard' heading='Look Back at All of Your Logs' text='All of your logs are saved, so you can look back and see when you may have been feeling down, and why.' />
         </div>
     )
 }
