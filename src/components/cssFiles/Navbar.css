@@ -16,6 +16,16 @@
     justify-content: left;
 }
 
+.NavbarSummit {
+    font-family: 'Encode Sans SC', sans-serif;
+    font-size: 1.6rem;
+    background: linear-gradient(var(--light-blue), var(--orange));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.5px gray;
+}
+
 .NavbarSummit:hover {
     cursor: pointer;
 }

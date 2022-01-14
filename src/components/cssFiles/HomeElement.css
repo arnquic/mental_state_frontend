@@ -16,13 +16,32 @@
     height: auto;
 }
 
-.HomeElementText {
+.HomeElementTextLeft {
     width: 20vw;
     height: auto;
+
+    padding: 10px;
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: 20px;
+
+    border-right: 0.5px solid gray;
+}
+
+.HomeElementTextRight {
+    width: 20vw;
+    height: auto;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+
+    border-left: 0.5px solid gray;
 }

@@ -17,14 +17,14 @@ const HomeElement = (props: Props): JSX.Element => {
                 ?
                 <>
                     <img className="HomeElementImg" src={props.img} alt={props.imgAlt} />
-                    <div className="HomeElementText">
+                    <div className="HomeElementTextRight">
                         <h3>{props.heading}</h3>
                         <p>{props.text}</p>
                     </div>
                 </>
                 :
                 <>
-                    <div className="HomeElementText">
+                    <div className="HomeElementTextLeft">
                         <h3>{props.heading}</h3>
                         <p>{props.text}</p>
                     </div>
