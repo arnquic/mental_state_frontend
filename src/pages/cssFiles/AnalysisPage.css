@@ -18,11 +18,11 @@
     flex-direction: column;
     gap: 25px;
 
-    background-color: rgba(240, 238, 239, 1.0);
+    background-color: var(--main-white);
 
-    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border: 0.2px solid var(--border-shadow);
     border-radius: 8px;
-    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+    box-shadow: -6px -6px 16px var(--light-shadow), 6px 6px 16px var(--dark-shadow);
 }
 
 .AnalysisPageLogContentHeader {
@@ -35,11 +35,11 @@
     flex-direction: column;
     gap: 20px;
 
-    background-color: rgba(240, 238, 239, 1.0);
+    background-color: var(--main-white);
 
-    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border: 0.2px solid var(--border-shadow);
     border-radius: 8px;
-    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+    box-shadow: -6px -6px 16px var(--light-shadow), 6px 6px 16px var(--dark-shadow);
 }
 
 .AnalysisPageResultHeader {
@@ -65,11 +65,12 @@
     align-items: center;
     justify-content: center;
 
-    background-color: rgba(240, 238, 239, 1.0);
+    background: linear-gradient(-45deg, var(--blue), var(--orange));
+    animation: 6s rotate linear infinite;
 
-    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border: 0.2px solid var(--outer-circle-border);
     border-radius: 50%;
-    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+    box-shadow: -6px -6px 16px var(--light-shadow) inset, 6px 6px 16px var(--dark-shadow) inset;
 }
 
 .AnalysisPageScoreInnerCircle {
@@ -80,11 +81,12 @@
     align-items: center;
     justify-content: center;
 
-    background-color: rgba(240, 238, 239, 1.0);
+    background-color: var(--main-white);
+    animation: 6s anti-rotate linear infinite;
 
-    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border: 0.2px solid var(--border-shadow);
     border-radius: 50%;
-    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+    box-shadow: -6px -6px 16px var(--light-shadow), 6px 6px 16px var(--dark-shadow);
 }
 
 .AnalysisPageExplanation {
@@ -93,4 +95,14 @@
     align-items: flex-start;
     justify-content: center;
     gap: 8px;
+}
+
+@keyframes rotate {
+  from {transform: rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@keyframes anti-rotate {
+    from{transform: rotate(0deg);}
+    to {transform: rotate(-360deg);}
 }

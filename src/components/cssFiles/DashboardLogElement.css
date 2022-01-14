@@ -4,16 +4,16 @@
     grid-template-columns: 1fr 3fr 2fr 5fr 2fr 1fr;
     grid-template-rows: 150px;
 
-    background-color: rgba(240, 238, 239, 1.0);
+    background-color: var(--main-white);
 
-    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    border: 0.2px solid var(--border-shadow);
     border-radius: 8px;
-    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+    box-shadow: -6px -6px 16px var(--light-shadow), 6px 6px 16px var(--dark-shadow);
 }
 
 .DashboardLogElement:hover {
     cursor: pointer;
-    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+    box-shadow: -6px -6px 16px var(--light-shadow) inset, 6px 6px 16px var(--dark-shadow) inset;
 }
 
 .DashboardLogElementDate {
@@ -59,9 +59,12 @@
     height: 90px;
     width: 90px;
 
+    background: linear-gradient(-45deg, var(--blue), var(--orange));
+    animation: 6s rotate linear infinite;
+
     border-radius: 50%;
-    border: 0.2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0) inset, 6px 6px 16px rgba(209, 205, 199, 1.0) inset;
+    border: 0.2px solid var(--outer-circle-border);
+    box-shadow: -6px -6px 16px var(--light-shadow) inset, 6px 6px 16px var(--dark-shadow) inset;
 }
 
 .DashboardLogElementScoreInnerCircle {
@@ -72,7 +75,21 @@
     height: 60px;
     width: 60px;
 
+    background-color: var(--main-white);
+    animation: 6s anti-rotate linear infinite;
+
     border-radius: 50%;
-    border: 0.2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: -6px -6px 16px rgba(255, 255, 255, 1.0), 6px 6px 16px rgba(209, 205, 199, 1.0);
+    border: 0.2px solid var(--border-shadow);
+    box-shadow: -6px -6px 16px var(--light-shadow), 6px 6px 16px var(--dark-shadow);
+}
+
+
+@keyframes rotate {
+  from {transform: rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@keyframes anti-rotate {
+    from{transform: rotate(0deg);}
+    to {transform: rotate(-360deg);}
 }

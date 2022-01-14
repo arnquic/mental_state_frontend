@@ -10,3 +10,12 @@
 .HomePageIntro {
     width: 65vw;
 }
+
+.HomePageIntro > h1 {
+    font-family: 'Encode Sans SC', sans-serif;
+    font-size: 5rem;
+    background: linear-gradient(var(--light-blue), var(--orange));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

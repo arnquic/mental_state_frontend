@@ -49,8 +49,10 @@ const DashboardLogElement = (props: IProps): JSX.Element => {
     }
 
     function checkAnalysis(): void {
-        if (props.analysis === 0) {
-            setAnalysisFalsey(true)
+        if (props.analysis !== null) {
+            if (props.analysis >= 0) {
+                setAnalysisFalsey(true)
+            }
         }
     }
 

@@ -30,7 +30,7 @@ const AnalysisPage = (): JSX.Element => {
                                 </div>
                                 <div className="AnalysisPageExplanation">
                                     <h2>But, what does that mean?</h2>
-                                    <h4>A higher score reflects a higher likelihood of a depressed and/or anxious state.</h4>
+                                    <p>A higher score reflects a higher likelihood of a depressed and/or anxious state.</p>
                                     <p>We currently do our analysis based off of today's leading science on linguistic analysis for indication or mental state based on indicators for depression and anxiety. We're looking to expand to other non-neuro-typical mental health states.</p>
                                     <p>
                                         For more information on the science we're currently using, checkout <span>

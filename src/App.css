@@ -1,14 +1,32 @@
+:root {
+  --blue: rgba(53, 107, 224, 88);
+  --yellow: rgba(224, 205, 31, 88);
+  --light-blue: rgba(43, 196, 224, 88);
+  --purple: rgba(100, 65, 224, 88);
+  --orange: rgba(224, 144, 76, 88);
+  --main-white: rgba(239, 238, 238, 1.0);
+  --light-shadow: rgba(255, 255, 255, 1.0);
+  --dark-shadow: rgba(209, 205, 199, 1.0);
+  --border-shadow: rgba(255, 255, 255, 0.2);
+  --outer-circle-border: rgba(255, 255, 255, 0.8)
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
-  background-color: rgba(239, 238, 238, 1.0);
+  background-color: var(--main-white);
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   gap: 50px;
+}
+
+p {
+  font-size: 1.15em;
 }
